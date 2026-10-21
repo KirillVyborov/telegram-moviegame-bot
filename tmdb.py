@@ -1,5 +1,3 @@
-import asyncio
-import logging
 from typing import Any
 import random
 import aiohttp
@@ -34,9 +32,8 @@ class TMDBClient:
         for _ in range(5):
             movie = await self.random_movie()
             params = {"include_image_language": "null"}
-            async with self.session.get(
-                f"{self.BASE_URL}/movie/{movie["id"]}/images",
-                        params=params, headers=self.headers) as request:
+            url = f"{self.BASE_URL}/movie/{movie["id"]}/images"
+            async with self.session.get(url, params=params, headers=self.headers) as request:
                 request.raise_for_status()
                 data = await request.json()
 
@@ -51,6 +48,6 @@ class TMDBClient:
                     "url": self.IMG_URL + frame["file_path"]
                 }
             
-            raise RuntimeError("Не удалось найти фильма с картинками")
+        raise RuntimeError("Не удалось найти фильма с картинками")
 
     
