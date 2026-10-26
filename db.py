@@ -13,12 +13,12 @@ async def init_db():
         )
         await db.commit()
 
-async def add_point(user_id: int) -> int:
+async def add_point(user_id: int, points: int = 1) -> int:
     async with aiosqlite.connect(DB_PATH) as db:
         await db.execute(
-            """INSERT INTO scores (user_id, score) VALUES (?, 1)
-            ON CONFLICT(user_id) DO UPDATE SET score = score + 1""",
-            (user_id,)
+            """INSERT INTO scores (user_id, score) VALUES (?, ?)
+            ON CONFLICT(user_id) DO UPDATE SET score = score + ?""",
+            (user_id, points, points)
         )
 
         await db.commit()

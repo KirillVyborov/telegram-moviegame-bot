@@ -14,23 +14,35 @@ class TMDBClient:
             "Accept": "application/json"
         }
 
-    async def random_movie(self) -> dict:
-        page = random.randint(1,50)
+    async def random_movie(self, animation: bool = False, pages: tuple[int, int] = (1, 50)) -> dict:
         params = {
             "sort_by": "popularity.desc",
-            "page": page,
+            "page": random.randint(*pages),
             "language": self.language,
-            "vote_count.gte": 500
+            "vote_count.gte": 500,
+            "include_adult": "false"
         }
-        async with self.session.get(f"{self.BASE_URL}/discover/movie",
-                                     params=params, headers=self.headers) as request:
-            request.raise_for_status()
-            data = await request.json()
-        return random.choice(data["results"])
+        if animation:
+            params["with_genres"] = "16"
+        else:
+            params["without_genres"] = "16"
 
-    async def random_image(self) -> dict:
+        for _ in range(3):
+            params["page"] = random.randint(*pages)
+            async with self.session.get(f"{self.BASE_URL}/discover/movie",
+                                        params=params, headers=self.headers) as request:
+                request.raise_for_status()
+                data = await request.json()
+            results = data.get("results", [])
+            if results:
+                return random.choice(results)
+
+            pages = (1, min(pages[1], data.get("total_pages", 1) or 1))
+        raise RuntimeError("TMDB не нашел фильм")
+
+    async def random_image(self, animation: bool = False, pages: tuple[int, int] = (1, 50)) -> dict:
         for _ in range(5):
-            movie = await self.random_movie()
+            movie = await self.random_movie(animation, pages)
             params = {"include_image_language": "null"}
             url = f"{self.BASE_URL}/movie/{movie["id"]}/images"
             async with self.session.get(url, params=params, headers=self.headers) as request:
