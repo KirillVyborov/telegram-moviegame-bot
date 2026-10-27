@@ -65,5 +65,6 @@ def settings_markup(user_id: int):
     for key, label in DIFFICULTY_LABELS.items():
         mark = "Сложность " if p["difficulty"] == key else ""
         btn.button(text=mark + label, callback_data=f"set:diff:{key}")
-    btn.adjust(2, 3)
+    btn.button(text="Сбросить прогресс", callback_data="reset:ask")
+    btn.adjust(2, 3, 1)
     return btn.as_markup()

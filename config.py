@@ -8,6 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent
 class Settings(BaseSettings):
     bot_token: SecretStr
     tmdb_token: SecretStr
+    youtube_api_key: SecretStr
 
     tmdb_language: str = "ru-RU"
     log_level: str = "INFO"

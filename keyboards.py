@@ -9,3 +9,10 @@ def main_keyboard():
     builder.button(text="Настройки")
     builder.adjust(2)
     return builder.as_markup()
+
+def trailer_markup(url: str | None):
+    if not url:
+        return None
+    builder = InlineKeyboardBuilder()
+    builder.button(text="Трейлер на YouTube", url=url)
+    return builder.as_markup()
