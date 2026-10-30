@@ -44,5 +44,5 @@ class YouTubeClient:
         items = data.get("items", [])
         if not items:
             return None
-        video_id = items[0].get("id", {}).get("videoId")
+        video_id = items[0].get("id", []).get("videoId")
         return f"https://www.youtube.com/watch?v={video_id}" if video_id else None
