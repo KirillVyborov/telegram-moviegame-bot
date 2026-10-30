@@ -13,7 +13,7 @@ def main_keyboard():
     builder.button(text="📊Статистика")
     builder.button(text="⚙️Настройки")
     builder.adjust(2)
-    return builder.as_markup()
+    return builder.as_markup(resize_keyboard=True)
 
 def trailer_markup(url: str | None):
     if not url:
