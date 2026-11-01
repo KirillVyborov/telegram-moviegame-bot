@@ -1,6 +1,6 @@
 [Telegram](https://t.me/minecraft6767bot)
 
-<img src="qr/qr.png" alt="QR-код" width="100">
+<img src="qr/qr.png" alt="QR-код" width="500">
 
 # Бот-игра. Нужно угадать фильм по кадру из него.
 
