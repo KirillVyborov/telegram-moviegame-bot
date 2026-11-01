@@ -1,5 +1,7 @@
 [Telegram](https://t.me/minecraft6767bot)
 
+![QR-код](qr/qr.png)
+
 # Бот-игра. Нужно угадать фильм по кадру из него.
 
 ## API
