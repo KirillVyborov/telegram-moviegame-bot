@@ -22,7 +22,7 @@
 
 - Создать папку, создать виртуальное окружение
 - Установить git. Прописать git clone https://github.com/KirillVyborov/telegram-moviegame-bot.git
-- Установить зависимости requirements.txt
+- Установить зависимости requirements.txt (pip install -r requirements.txt)
 - Создать .env с ключами по примеру .env.example
 - Запустить бота: python3 tg_bot.py
 
@@ -30,4 +30,3 @@
 
 - API: Telergam, TMDB, YouTube Data
 - Для бота: aiogram, для работы с api: aiohttp, для логов: logging, для БД: aiosqlite
- 
