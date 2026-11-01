@@ -30,3 +30,13 @@
 
 - API: Telergam, TMDB, YouTube Data
 - Для бота: aiogram, для работы с api: aiohttp, для логов: logging, для БД: aiosqlite
+
+## Текстовое описание таблицы
+
+Одна таблица scores:
+
+| Поле | Тип | Описание |
+| --- | --- | --- |
+| 'user_id' | INTEGER, PRIMARY KEY | Идентификатор пользователя |
+| 'score' | INTEGER, NOT NULL, DEFAULT 0 | Количество очков |
+| 'name' | TEXT | Имя пользователя |  

@@ -174,6 +174,14 @@ async def reset_no(callback: CallbackQuery):
     await callback.message.edit_text("Сброс отменен")
     await callback.answer()
 
+@router.message(F.text)
+async def unknown_text(message: Message):
+    log_action("unknown_text")
+    await message.answer(
+        "Выберите действие на клавиатуре или напишите /start.",
+        reply_markup=main_keyboard(),
+    )
+
 @router.errors(ExceptionTypeFilter(ServiceUnavailable))
 async def service_unavailable_handler(event: ErrorEvent):
     update = event.update
